@@ -3,7 +3,33 @@
 <head>
 <script type="text/javascript" src="https://code.jquery.com/jquery-1.7.1.min.js"></script>
 <script type="text/javascript" src="./turn.min.js"></script>
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-4W27L8C7SS"></script>
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+    const botonDescarga = document.getElementById('boton-descarga');
+    const urlArchivoGithub = 'https://drive.google.com/uc?export=download&id=1btlHqvvNQ-6f-e5qFCarNmi0yAjeUxpU';
+    const nombreArchivoDescarga = 'Rapa Nui Tesoros Geológicos' // Define el nombre del archivo a descargar
 
+    botonDescarga.addEventListener('click', function() {
+		// Enviar evento a Google Tag Manager
+      if (window.dataLayer && typeof window.dataLayer.push === 'function') {
+        window.dataLayer.push({
+          'event': 'botonDescargaClic', // Nombre del evento (puedes personalizarlo)
+          // Puedes agregar más información relevante aquí
+        });
+      }
+
+      // Forzar la descarga
+      const enlaceDescarga = document.createElement('a');
+      enlaceDescarga.href = urlArchivoGithub;
+      enlaceDescarga.download = nombreArchivoDescarga;
+		enlaceDescarga.target = '_blank'; // Agregamos el atributo target="_blank"
+      document.body.appendChild(enlaceDescarga);
+      enlaceDescarga.click();
+      document.body.removeChild(enlaceDescarga);
+    });
+  });
+</script>
 <style type="text/css">
 body{
 	background:#ccc;
@@ -16,10 +42,36 @@ body{
 	background-color:#ccc;
 	background-size:100% 100%;
 }
+
+#boton-descarga {
+  background-color: #9ABDC4; /* Color de fondo (verde, puedes cambiarlo) */
+  border: none; /* Sin borde */
+  color: #3B3E41; /* Color del texto */
+  padding: 15px 32px; /* Espaciado interno (arriba/abajo, izquierda/derecha) */
+  text-align: center; /* Alineación del texto */
+  text-decoration: none; /* Sin subrayado */
+  display: inline-block; /* Mostrar como bloque en línea */
+  font-size: 16px; /* Tamaño de la fuente */
+  margin: 4px 2px; /* Margen externo */
+  cursor: pointer; /* Cambiar el cursor al pasar por encima */
+  border-radius: 5px; /* Bordes redondeados */
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2); /* Sombra suave */
+}
+
+#boton-descarga:hover {
+  background-color: #8CA9B3; /* Color de fondo al pasar el ratón (verde más oscuro) */
+}
+
+#boton-descarga:active {
+  background-color: #9ABDC4; /* Color de fondo al hacer clic (verde aún más oscuro) */
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.2); /* Sombra más pequeña al hacer clic */
+  transform: translateY(1px); /* Ligeramente hacia abajo al hacer clic */
+}
 </style>
 </head>
 <body>
 
+<button id="boton-descarga">Descargar Libro</button>
 <div id="magazine">
 	<div style="background-image:url(magazine/pages-rapa/page1.jpg);"></div>
 	<div style="background-image:url(magazine/pages-rapa/page1.jpg);"></div>
@@ -131,6 +183,12 @@ body{
 	});
 
 </script>
-
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-4W27L8C7SS"></script>
+<script>
+	window.dataLayer = window.dataLayer || [];
+	function gtag() { dataLayer.push(arguments); }
+	gtag('js', new Date());
+	gtag('config', 'G-4W27L8C7SS');
+</script>
 </body>
 </html>
